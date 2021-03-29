@@ -1,0 +1,20 @@
+<%= form_for user do |f| %>
+  <div class="form-floating">
+    <%= f.text_field :name, class: "form-control", id: "floatingName", placeholder: "John Doe" %>
+    <%= f.label :name, for: "floatingName" %>
+  </div>
+  <div class="form-floating">
+    <%= f.email_field :email, class: "form-control", id: "floatingEmail", placeholder: "name@example.com" %>
+    <%= f.label :email, for: "floatingEmail" %>
+  </div>
+  <div class="checkbox my-3">
+    <label>
+      <%= f.check_box :admin %> Check if you are admin?
+    </label>
+  </div>
+  <div>
+    <%= f.submit "Submit", class:"w-100 btn btn-lg btn-primary" %>
+  </div>
+  <p class="my-3 text-muted">&copy; 2021</p>
+<% end %>
+      

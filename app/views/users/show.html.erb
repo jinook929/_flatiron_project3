@@ -1,0 +1,16 @@
+<div class="container d-flex align-items-center" style="height: 93.5vh; width: 100vw;">
+
+  <div class="text-center m-auto" style="width: 100%;">
+    <% if flash[:alert] %>
+      <div class="alert alert-success alert-dismissible fade show mx-auto mb-5" style="width:300px;" role="alert">
+        <%= flash[:alert] %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% end %>
+    <h1>User Info</h1>
+    <h3>User Name: <%= @user.name %></h3>
+    <p class="lead">Email: <%= @user.email %></p>
+    <small class="muted"><%= '( You are Admin )' if @user.admin %></small>
+    <small class="muted"><%= "( Your temporary password: #{session[:tmp_password]} )" if session[:tmp_password] %></small>
+  </div>
+
+</div>
