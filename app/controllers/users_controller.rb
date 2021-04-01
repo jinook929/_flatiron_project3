@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_action :redirect_if_not_logged_in, only: [:index, :show, :edit, :update, :destroy, :password_edit, :password_update]
 
   def index
+    redirect_if_not_admin
     if params[:event_id]
       @users = Event.find_by(id: params[:event_id]).users.order(:name)
     else
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
 
   def show
     if !self?
-      redirect_back fallback_location: user_path(current_user)
+      redirect_back fallback_location: user_path(current_user), alert: "You requested the page only the owner can access."
     end
   end
 

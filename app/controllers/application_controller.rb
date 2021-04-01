@@ -21,6 +21,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_if_not_admin
+    binding.pry
+    if current_user
+      if !current_user.admin
+        redirect_back fallback_location: user_path(current_user), alert: "You requested the page only Admin can access."
+      end
+    end
+  end
+
   # Check if reservation is owned by current user
   def owned?
     if current_user
