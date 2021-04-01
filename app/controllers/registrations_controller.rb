@@ -20,7 +20,7 @@ class RegistrationsController < ApplicationController
       registration.destroy
       redirect_to user_events_path(current_user)
     else
-      redirect_back fallback_location: user_path(current_user), alert: "You are not permitted to delete this reservation."
+      redirect_back fallback_location: user_path(current_user)
     end
   end
 end

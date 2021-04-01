@@ -9,6 +9,12 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def redirect_if_not_logged_in
+    if !current_user
+      redirect_to login_path
+    end
+  end
+
   def admin?
     if current_user
       current_user.admin
@@ -24,6 +30,6 @@ class ApplicationController < ActionController::Base
 
   # Check if accessing user account is current user's
   def self?
-    current_user.id == params[:user_id]
+    current_user.id == params[:id].to_i
   end
 end

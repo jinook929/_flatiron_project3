@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update destroy password_edit password_update ]
+  before_action :redirect_if_not_logged_in, only: %i[ index show edit update destroy password_edit password_update ]
 
   def index
     if params[:event_id]
@@ -10,6 +11,9 @@ class UsersController < ApplicationController
   end
 
   def show
+    if !self?
+      redirect_back fallback_location: user_path(current_user)
+    end
   end
 
   def new
