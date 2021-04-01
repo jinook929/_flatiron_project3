@@ -27,7 +27,7 @@
   <% end %>
 
   <% if current_user && current_user.admin %>
-    <p>
+    <p class="mt-4">
       <%= link_to "Attendees", event_users_path(@event), class: "btn btn-outline-secondary btn-lg px-5" %>
     </p>
   <% end %>
