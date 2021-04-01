@@ -1,9 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update ,:destroy, :password_edit, :password_update]
   before_action :redirect_if_not_logged_in, only: [:index, :show, :edit, :update, :destroy, :password_edit, :password_update]
+  before_action :redirect_if_not_admin_or_owner, only: [:index, :show, :edit, :update, :destroy, :password_edit, :password_update]
 
   def index
-    redirect_if_not_admin_or_owner
     if params[:event_id]
       @users = Event.find_by(id: params[:event_id]).users.order(:name)
     else
@@ -12,7 +12,6 @@ class UsersController < ApplicationController
   end
 
   def show    
-    redirect_if_not_admin_or_owner
   end
 
   def new
@@ -32,11 +31,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    redirect_if_not_admin_or_owner
   end
 
   def update
-    redirect_if_not_admin_or_owner
     @user.name = params[:user][:name]
     @user.email = params[:user][:email]
     @user.admin = params[:user][:admin]
@@ -50,7 +47,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    redirect_if_not_admin_or_owner
     @user.destroy
     redirect users_path
   end
