@@ -15,12 +15,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def admin?
-    if current_user
-      current_user.admin
-    end
-  end
-
   def redirect_if_not_admin
     binding.pry
     if current_user
@@ -38,7 +32,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Check if accessing user account is current user's
-  def self?
+  def self_account?
     current_user.id == params[:id].to_i
   end
 end

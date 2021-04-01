@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-    if !self_account?
+  def show    
+    if !(self_account? || current_user.admin)
       redirect_back fallback_location: user_path(current_user), alert: "You requested the page only the owner can access."
     end
   end
