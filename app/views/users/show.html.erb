@@ -1,5 +1,4 @@
 <div class="container d-flex align-items-center" style="height: 93.5vh; width: 100vw;">
-
   <div class="text-center m-auto" style="width: 100%;">
     <% if flash[:alert] %>
       <div class="alert alert-success alert-dismissible fade show mx-auto mb-5" style="width:300px;" role="alert">
@@ -9,8 +8,11 @@
     <h1>User Info</h1>
     <h3>User Name: <%= @user.name %></h3>
     <p class="lead">Email: <%= @user.email %></p>
-    <small class="muted"><%= '( You are Admin )' if @user.admin %></small>
-    <small class="muted"><%= "( Your temporary password: #{session[:tmp_password]} )" if session[:tmp_password] %></small>
+    <p><small class="muted"><%= '( You are Admin )' if @user.admin %></small></p>
+    <p><small class="muted"><%= "( Your temporary password is [ #{session[:tmp_password]} ]. Please change your password. )" if session[:tmp_password] %></small></p>
+    <%= link_to "Edit User Info", edit_user_path, class: "btn btn-dark mx-2", style: "width: 200px;" %> <%= link_to "Change Password", edit_password_path, class: "btn btn-light mx-2", style: "width: 200px;" %>
+    <p>
+      <%= link_to "Your Events", user_events_path(current_user), class: "btn btn-outline-dark btn-lg mt-4" %>
+    </p>
   </div>
-
 </div>

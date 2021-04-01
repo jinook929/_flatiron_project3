@@ -1,6 +1,10 @@
 class UsersController < ApplicationController
   def index
-    @users = User.order(:name)
+    if params[:event_id]
+      @users = Event.find_by(id: params[:event_id]).users.order(:name)
+    else
+      @users = User.order(:name)
+    end
   end
 
   def show
@@ -41,9 +45,36 @@ class UsersController < ApplicationController
     end
   end
 
+  def password_edit
+    @user = User.find(params[:id])
+  end
+
+  def password_update
+    @user = User.find(params[:id])
+    if params[:user][:password].empty?
+      @user.errors.add(:password, message: "must not be blank...")
+      @alert = "Password could not be changed."
+      @errors = @user.errors.full_messages
+      render 'password_edit'
+    else
+      @user.update(password_params)
+      if @user.errors.present?
+        @alert = "Password could not be changed."
+        @errors = @user.errors.full_messages
+        render 'password_edit'
+      else
+        redirect_to @user, alert: "Password successfully changed."
+      end
+    end
+  end
+
   private
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :admin)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
+  end
+
+  def password_params
+    params.require(:user).permit(:password, :password_confirmation)
   end
 end

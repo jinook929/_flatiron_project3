@@ -1,7 +1,7 @@
 <div class="card bg-dark text-white">
   <%= image_tag "daniil-kuzelev-C4G18Paw0d4-unsplash_.jpg", alt: "background" %>
   <div class="card-img-overlay text-center mt-5">
-  
+
     <% if flash[:alert] %>
       <div class="alert alert-light alert-dismissible fade show mx-auto" style="width:300px;" role="alert">
         <%= flash[:alert] %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -13,6 +13,6 @@
     <p class="card-text lead fw-normal">During COVID-19 Season</p>
     <!--<hr class="my-4">-->
     <p class="mt-4">Stay safe and stay wonderful till we meet again!!!</p>
-    <a class="btn btn-warning btn-lg mt-3 fw-bold px-4" href="#" role="button">Register Here</a>
+    <%= link_to "Upcoming Events", events_path, class: "btn btn-warning btn-lg mt-3 px-4" %>
   </div>
 </div>

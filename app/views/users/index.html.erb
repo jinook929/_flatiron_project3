@@ -1,5 +1,13 @@
-<h1>Users</h1>
+<div class="d-flex align-items-center" style="height: 85vh;">
+  <div class="m-auto text-center">
+    <% if params[:event_id] %>
+      <button class="btn btn-outline-dark btn-lg mb-4 px-5 py-3" disabled><h2>Attendees</h2></button>
+    <% else %>
+      <h1>User List</h1>
+    <% end %>
 
-<% @users.each do |user| %>
-  <h3><%= link_to user.name, user %></h3>
-<% end %>
+    <% @users.each do |user| %>
+      <h3 class="lead"><%= link_to user.name, user %></h3>
+    <% end %>
+  </div>
+</div>

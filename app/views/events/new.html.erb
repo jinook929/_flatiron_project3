@@ -1,0 +1,46 @@
+<section class="d-flex align-items-center" style="height: 93.5vh; width: 100vw;">
+  <main class="form-signin text-center m-auto" style="width: 100%; max-width: 363px; padding: 15px;">
+
+    <% if @alert %>
+      <h3><%= @alert %></h3>
+        <% @errors.each do |m| %>
+          <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            <%= m %><button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        <% end %>
+    <% end %>
+
+    <%= image_tag "Exilic-Logo-03-Square-Black.png", alt: "logo", width: "75", height: "75" %>
+    <h1 class="h3 mb-3 fw-normal">Create Event</h1>
+
+    <%= form_with model: @event, role: "group" do |f| %>
+      <%#= render partial: 'form', locals: {user: @user, f: f} %>
+      <div>
+        <input type="checkbox" name="event[onsite]" class="btn-check" id="btn-check-outlined" autocomplete="off">
+        <label class="btn btn-outline-warning" for="btn-check-outlined" style="height: 40px; width: 333px;">On_Site?</label>
+      </div>
+      <div class="form-floating">
+        <%= f.date_field :date, class: "form-control", id: "floatingWhen", placeholder: "Date?" %>
+      </div>
+      <div class="form-floating">
+        <%= f.time_field :time, class: "form-control", id: "floatingWhen", placeholder: "Time?" %>
+      </div>
+      <div class="form-floating">
+        <%= f.text_field :title, class: "form-control", id: "floatingTitle", placeholder: "Event Title" %>
+        <%= f.label :title, for: "floatingTitle" %>
+      </div>
+      <div class="form-floating">
+        <%= f.number_field :spots, class: "form-control", id: "floatingspots", placeholder: "Number of Attendees" %>
+        <%= f.label :spots, "Number of Attendees", for: "floatingspots" %>
+      </div>
+      <div class="form-floating">
+        <%= f.text_area :description, class: "form-control", id: "floatingDescription", placeholder: "Event Description", style: "height: 100px;" %>
+        <%= f.label :description, for: "floatingDescription" %>
+      </div>
+      <div>
+        <%= f.submit class:"w-100 btn btn-lg btn-primary" %>
+      </div>
+    <% end %>
+
+  </main>
+</section>

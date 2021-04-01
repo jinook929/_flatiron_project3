@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  when: 2021-03-30 10:19:40
+  onsite: false
+  description: MyText
+  spots: 1
+
+two:
+  title: MyString
+  when: 2021-03-30 10:19:40
+  onsite: false
+  description: MyText
+  spots: 1
