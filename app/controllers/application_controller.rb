@@ -24,6 +24,6 @@ class ApplicationController < ActionController::Base
 
   # Check if accessing user account is current user's
   def self?
-    current_user == params[:id] || current_user == params[:user_id]
+    current_user == Registration.find(params[:id]).user
   end
 end

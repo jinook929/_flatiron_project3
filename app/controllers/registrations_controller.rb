@@ -13,8 +13,12 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    registration = Registration.find_by(id: params[:id])
-    registration.destroy
-    redirect_to user_events_path(current_user)
+    if self?
+      registration = Registration.find_by(id: params[:id])
+      registration.destroy
+      redirect_to user_events_path(current_user)
+    else
+      redirect_back fallback_location: user_path(current_user), alert: "You are not permitted to delete this reservation."
+    end
   end
 end
