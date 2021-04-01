@@ -1,7 +1,9 @@
 <div class="container">
 
-<h1 class="text-center mt-5">Event List</h1>
-<p class="lead text-center"><%= link_to "On-Site Events", onsite_path %> | <%= link_to "Virtual Events", virtual_path %></p>
+<h1 class="text-center mt-5 mb-3">Event List</h1>
+<% if params[:user_id].nil? %>
+  <p class="lead text-center"><%= link_to "On-Site Events", onsite_path %> | <%= link_to "Virtual Events", virtual_path %></p>
+<% end %>
 
 <div class="accordion mb-3" id="accordionExample">
   
