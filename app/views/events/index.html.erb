@@ -5,6 +5,12 @@
   <p class="lead text-center"><%= link_to "On-Site Events", onsite_path %> | <%= link_to "Virtual Events", virtual_path %></p>
 <% end %>
 
+<% if @events.empty? %>
+  <div class="container text-center mt-5">
+    <%= link_to "Look around the events.", events_path, class: "btn btn-outline-primary btn-lg px-5 py-3" %>  
+  </div>
+<% end %>
+
 <div class="accordion mb-3" id="accordionExample">
   
   <% @events.each_with_index do |event, i| %>
