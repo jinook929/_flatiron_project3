@@ -15,11 +15,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def redirect_if_not_admin
-    binding.pry
+  def redirect_if_not_admin_or_owner
     if current_user
-      if !current_user.admin
-        redirect_back fallback_location: user_path(current_user), alert: "You requested the page only Admin can access."
+      if !(self_account? || current_user.admin)
+        redirect_back fallback_location: user_path(current_user), alert: "You requested the page only the owner can access."
       end
     end
   end
@@ -33,6 +32,8 @@ class ApplicationController < ActionController::Base
 
   # Check if accessing user account is current user's
   def self_account?
-    current_user.id == params[:id].to_i
+    if params[:id]
+      current_user.id == params[:id].to_i
+    end
   end
 end
