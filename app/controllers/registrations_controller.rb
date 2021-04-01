@@ -13,7 +13,7 @@ class RegistrationsController < ApplicationController
   end
 
   def destroy
-    if owned?
+    if registration_owned?
       registration = Registration.find_by(id: params[:id])
       registration.event.spot += 1
       registration.save

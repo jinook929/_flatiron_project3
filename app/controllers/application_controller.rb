@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   end
 
   # Check if reservation is owned by current user
-  def owned?
+  def registration_owned?
     if current_user
       current_user == Registration.find_by(id: params[:id]).user
     end
