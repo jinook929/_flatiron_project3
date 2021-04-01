@@ -1,7 +1,9 @@
 <div class="checkbox mt-4 mb-2">
-  <label>
-    <%= f.check_box :admin %> Check if you are admin?
-  </label>
+  <% if current_user && current_user.admin %>
+    <label>
+      <%= f.check_box :admin %> Check if you are admin?
+    </label>
+  <% end %>
 </div>
 <div class="form-floating">
   <%= f.text_field :name, class: "form-control", id: "floatingName", placeholder: "John Doe" %>

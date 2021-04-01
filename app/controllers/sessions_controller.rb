@@ -1,9 +1,11 @@
 class SessionsController < ApplicationController
   def new
+    redirect_to current_user if logged_in?
     @user = User.new
   end
 
   def create
+    redirect_to current_user if logged_in?
     @user = User.find_by(email: params[:user][:email])
     if @user && @user.authenticate(params[:user][:password])
       session[:user_id] = @user.id
@@ -30,6 +32,7 @@ class SessionsController < ApplicationController
   end
 
   def google_signin
+    redirect_to current_user if logged_in?
     @user = User.find_by(email: auth[:info][:email])
     if @user
       session[:user_id] = @user.id
@@ -49,6 +52,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    redirect_if_not_logged_in
     session.clear
     redirect_to root_path, alert: "Successfully logged out"
   end

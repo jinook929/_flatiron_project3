@@ -47,7 +47,7 @@
 
             <li class="navbar-item">
               <% if current_user.admin %>
-                <a class="nav-link fw-bold mx-3" href="<%= user_path(current_user) %>"><%= current_user.name.titlecase %> [ADMIN]</a>
+                <a class="nav-link fw-bold mx-3" href="<%= user_path(current_user) %>"><%= current_user.name.titlecase %> <code class="text-danger">[ADMIN]</code></a>
               <% else %>
                 <a class="nav-link fw-bold mx-3" href="<%= user_path(current_user) %>"><%= current_user.name.titlecase %>'s Profile</a>
               <% end %>
