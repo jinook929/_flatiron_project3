@@ -15,6 +15,15 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def redirect_if_not_admin
+    if current_user
+      if !current_user.admin
+        redirect_back fallback_location: user_path(current_user), alert: "You requested the page only the owner can access."
+      end
+    end
+  end
+
+  # Use only for User model
   def redirect_if_not_admin_or_owner
     if current_user
       if !(self_account? || current_user.admin)

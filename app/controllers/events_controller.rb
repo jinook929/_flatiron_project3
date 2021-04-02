@@ -1,6 +1,7 @@
 class EventsController < ApplicationController
+  before_action :set_event, only: [:show, :edit, :update ,:destroy]
   before_action :redirect_if_not_logged_in, only: [:new, :create, :edit, :update, :destroy]
-  before_action :redirect_if_not_admin_or_owner, only: [:new, :create, :edit, :update, :destroy]
+  before_action :redirect_if_not_admin, only: [:new, :create, :edit, :update, :destroy]
 
   def index
     if params[:user_id]
@@ -11,7 +12,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @event = Event.find_by(id: params[:id])
+    redirect_to events_path if @event.nil?
     @registration = Registration.find_by(event_id: params[:id], user_id: params[:user_id])
   end
 
@@ -30,16 +31,19 @@ class EventsController < ApplicationController
     end
   end
 
-  def edit
-    @event = Event.find_by(id: params[:id])
+  def edit    
   end
 
-  def update
-    @event = Event.find_by(id: params[:id])
+  def update    
     @event.update(event_params)
     @event.toggle(:onsite) if (params[:event][:onsite].nil? && @event.onsite) || (params[:event][:onsite] && !@event.onsite)
     @event.save
     redirect_to @event
+  end
+
+  def destroy
+    @event.destroy
+    redirect_to events_path
   end
 
   def onsite
@@ -55,6 +59,11 @@ class EventsController < ApplicationController
   end
 
   private
+
+  def set_event
+    @event = Event.find_by(id: params[:id])
+  end
+
 
   def event_params
     params.require(:event).permit(:title, :date, :time, :spots, :description)
