@@ -52,6 +52,12 @@ class EventsController < ApplicationController
     redirect_to events_path
   end
 
+  def full
+    @events = Event.all.select {|event| event.open?.include?("closed")}
+
+    render 'index'
+  end
+
   def onsite
     @events = Event.onsite_events
     @note = "On-Site"
