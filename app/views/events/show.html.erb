@@ -20,7 +20,7 @@
     <small class="muted">( <%= @event.open? %><strong><%= ', You are registered for this event.' if @event.users.include?(current_user) %></strong> )</small>
   </div>
 
-  <a href="<%= new_event_registration_path(@event) %>" class="text-decoration-none text-reset <%= 'isDisabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>"><button type="button" class="btn btn-secondary btn-lg mt-3 mx-2 px-5 <%= 'isDisabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>" <%= 'disabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>>Register</button></a>
+  <a href="<%= new_event_registration_path(@event) %>" class="text-decoration-none text-reset <%= 'isDisabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>"><button type="button" class="btn btn-outline-danger btn-lg mt-3 mx-2 px-5" <%= 'disabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>>Register</button></a>
 
   <br>
 
