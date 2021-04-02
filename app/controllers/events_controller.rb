@@ -18,7 +18,8 @@ class EventsController < ApplicationController
   end
 
   def create
-    @event = Event.new(title: params[:event][:title], date: params[:event][:date], time: params[:event][:time], description: params[:event][:description], spots: params[:event][:spots])
+    @event = Event.new(event_params)
+    # @event = Event.new(title: params[:event][:title], date: params[:event][:date], time: params[:event][:time], description: params[:event][:description], spots: params[:event][:spots])
     @event.toggle(:onsite) if params[:event][:onsite]
     if @event.save
       redirect_to @event, alert: "Event Successfully Created!"
@@ -33,7 +34,11 @@ class EventsController < ApplicationController
   end
 
   def update
-    binding.pry
+    @event = Event.find_by(id: params[:id])
+    @event.update(event_params)
+    @event.toggle(:onsite) if (params[:event][:onsite].nil? && @event.onsite) || (params[:event][:onsite] && !@event.onsite)
+    @event.save
+    redirect_to @event
   end
 
   def onsite
@@ -48,4 +53,9 @@ class EventsController < ApplicationController
     render "event_type"
   end
 
+  private
+
+  def event_params
+    params.require(:event).permit(:title, :date, :time, :spots, :description)
+  end
 end

@@ -15,7 +15,7 @@
 
     <%= form_with model: @event, role: "group" do |f| %>
       <div>
-        <input type="checkbox" name="event[onsite]" class="btn-check" id="btn-check-outlined" autocomplete="off" <%= 'checked' if @event.onsite>
+        <input type="checkbox" name="event[onsite]" class="btn-check" id="btn-check-outlined" autocomplete="off" <%= 'checked' if @event.onsite %>>
         <label class="btn btn-outline-warning" for="btn-check-outlined" style="height: 40px; width: 333px;">On_Site?</label>
       </div>
       <div class="form-floating">
@@ -29,8 +29,8 @@
         <%= f.label :title, for: "floatingTitle" %>
       </div>
       <div class="form-floating">
-        <%= f.number_field :spots, class: "form-control", id: "floatingspots", placeholder: "Number of Attendees" %>
-        <%= f.label :spots, "Number of Attendees", for: "floatingspots" %>
+        <%= f.number_field :spots, class: "form-control", id: "floatingspots", placeholder: "Available Spots" %>
+        <%= f.label :spots, "Available Spots", for: "floatingspots" %>
       </div>
       <div class="form-floating">
         <%= f.text_area :description, class: "form-control", id: "floatingDescription", placeholder: "Event Description", style: "height: 100px;" %>
