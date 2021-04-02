@@ -26,6 +26,7 @@ class EventsController < ApplicationController
     if @event.save
       redirect_to @event, alert: "Event Successfully Created!"
     else
+      @alert = "Please fill in all the boxex."
       @errors = @event.errors.full_messages
       render 'new'
     end
@@ -37,8 +38,13 @@ class EventsController < ApplicationController
   def update    
     @event.update(event_params)
     @event.toggle(:onsite) if (params[:event][:onsite].nil? && @event.onsite) || (params[:event][:onsite] && !@event.onsite)
-    @event.save
-    redirect_to @event
+    if @event.save
+      redirect_to @event, alert: "Event Successfully Created!"
+    else
+      @alert = "Please fill in all the boxex."
+      @errors = @event.errors.full_messages
+      render 'edit'
+    end
   end
 
   def destroy

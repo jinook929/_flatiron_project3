@@ -12,7 +12,7 @@
     <p><small class="muted"><%= "( Your temporary password is [ #{session[:tmp_password]} ]. Please change your password. )" if session[:tmp_password] %></small></p>
     <%= link_to "Edit User Info", edit_user_path, class: "btn btn-dark mx-2", style: "width: 200px;" %> <%= link_to "Change Password", edit_password_path, class: "btn btn-light mx-2", style: "width: 200px;" %>
     <p>
-      <%= link_to "Your Events", user_events_path(current_user), class: "btn btn-outline-primary btn-lg my-4" %>
+      <%= link_to "User Events", user_events_path(params[:id]), class: "btn btn-outline-primary btn-lg my-4" %>
     </p>
 
     <% if current_user.admin %>

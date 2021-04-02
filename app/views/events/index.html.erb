@@ -1,6 +1,6 @@
 <div class="container">
 
-<h1 class="text-center mt-5 mb-3">Event List</h1>
+<h1 class="text-center mt-5 mb-3"><%= "#{User.get_name(params[:user_id]).first}'s " %>Event List</h1>
 
 <% if current_user && current_user.admin %>
   <div class="text-center">

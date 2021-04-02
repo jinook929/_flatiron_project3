@@ -5,4 +5,6 @@ class User < ApplicationRecord
   validates :name, presence: true
   validates :email, presence: true, uniqueness: true
   has_secure_password
+
+  scope :get_name, ->(id) { where(id: id).pluck(:name) }
 end
