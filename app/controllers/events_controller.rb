@@ -28,6 +28,14 @@ class EventsController < ApplicationController
     end
   end
 
+  def edit
+    @event = Event.find_by(id: params[:id])
+  end
+
+  def update
+    binding.pry
+  end
+
   def onsite
     @events = Event.onsite_events
     @note = "On-Site"

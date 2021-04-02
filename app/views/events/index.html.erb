@@ -38,7 +38,8 @@
           <%= link_to "Show", event_path(event), class: "btn btn-warning btn-lg mx-3 px-5", style: "width: 150px;" %>
         <% end %>
         <% if current_user.admin %>
-          <button type="button" class="btn btn-dark btn-lg mx-3 px-5" style="width: 150px;">Edit</button>
+          <%= link_to "Edit", edit_event_path(event), class: "btn btn-dark btn-lg mx-3 px-5", style: "width: 150px;" %>
+          <%# <button type="button" class="btn btn-dark btn-lg mx-3 px-5" style="width: 150px;">Edit</button> %>
         <% end %>
       </div>
     </div>
