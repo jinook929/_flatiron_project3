@@ -32,7 +32,7 @@
       <div class="accordion-body text-center mx-auto gap-5">
         <p>Date: <%= event.date %><%= ' | On-Site' if event.onsite %></p>
         <p><%= event.open? %></p>
-        <% if params[:user_id] %>
+        <% if params[:user_id] || logged_in? %>
           <%= link_to "Show", user_event_path(current_user, event), class: "btn btn-warning btn-lg mx-3 px-5", style: "width: 150px;" %>
         <% else %>
           <%= link_to "Show", event_path(event), class: "btn btn-warning btn-lg mx-3 px-5", style: "width: 150px;" %>
