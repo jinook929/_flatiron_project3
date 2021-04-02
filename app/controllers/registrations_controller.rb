@@ -15,8 +15,8 @@ class RegistrationsController < ApplicationController
   def destroy
     if registration_owned?
       registration = Registration.find_by(id: params[:id])
-      registration.event.spot += 1
-      registration.save
+      registration.event.spots += 1
+      registration.event.save
       registration.destroy
       redirect_to user_events_path(current_user)
     else
