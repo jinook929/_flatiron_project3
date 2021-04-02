@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   resources :events do
     resources :users
-    resources :registrations, only: [:new, :create, :destroy]
+    resources :registrations, only: [:new, :create, :edit, :update, :destroy]
   end
   
   resources :users, except: [:new, :create] do

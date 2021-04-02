@@ -12,6 +12,11 @@ class RegistrationsController < ApplicationController
     end
   end
 
+  def edit
+    @registration = Registration.find_by(id: params[:id])
+    @event = Event.find_by(id: params[:event_id])
+  end
+
   def destroy
     if registration_owned?
       registration = Registration.find_by(id: params[:id])

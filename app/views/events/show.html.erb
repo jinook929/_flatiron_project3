@@ -22,7 +22,10 @@
 
   <button type="button" class="btn btn-secondary btn-lg mt-3 mx-2 px-5" <%= 'disabled' if (@event.open?.include?("closed") || @event.users.include?(current_user)) %>><a href="<%= new_event_registration_path(@event) %>" class="text-decoration-none text-reset">Register</a></button>
 
+  <br>
+
   <% if logged_in? && params[:user_id] && Event.registered?(@event, current_user).present? %>
+    <%= link_to "Edit", edit_event_registration_path(@event, @registration), class: "btn btn-dark btn-lg mt-3 mx-2 px-5" %>
     <%= link_to "Cancel", event_registration_path(@event, @registration), class: "btn btn-dark btn-lg mt-3 mx-2 px-5", method: :delete, data: { confirm: 'Are you certain you want to cancel this?' } %>
   <% end %>
 
