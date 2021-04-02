@@ -7,7 +7,8 @@
       <p class="mb-3"><%= @event.date %> @ <%= @event.time.strftime('%l:%M %p') %></p>
       <h6 class="card-title mb-2">Family?</h6>
         <div class="">
-          <%= form_with model: @registration, url: event_registrations_path do |f| %>
+
+          <%= form_with model: @registration, url: event_registration_path(@event, @registration) do |f| %>
             <p>
               <%= f.check_box :family, class: "form-check-input mr-0 pr-0", id: "family" %>
               <%= f.label :family, "Check if family attending", class: "form-check-label", for: "family" %>

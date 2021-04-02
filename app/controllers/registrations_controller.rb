@@ -17,6 +17,12 @@ class RegistrationsController < ApplicationController
     @event = Event.find_by(id: params[:event_id])
   end
 
+  def update
+    @registration = Registration.find_by(event_id: params[:event_id], user_id: current_user.id)
+    @registration.update(family: params[:registration][:family])
+    redirect_to user_event_path(current_user, @registration.event)
+  end
+
   def destroy
     if registration_owned?
       registration = Registration.find_by(id: params[:id])
