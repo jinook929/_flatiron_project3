@@ -48,7 +48,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect users_path
+    redirect_to users_path
   end
 
   def password_edit
