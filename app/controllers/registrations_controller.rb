@@ -26,14 +26,12 @@ class RegistrationsController < ApplicationController
   end
 
   def update
-    redirect_to current_user, alert: "Registration Failed." if !(registration_owned? || current_user.admin) || (@registration.event != @event)
     @registration = Registration.find_by(event_id: params[:event_id], user_id: current_user.id)
     @registration.update(family: params[:registration][:family])
     redirect_to user_event_path(current_user, @registration.event)
   end
 
   def destroy
-    redirect_to current_user, alert: "Registration Failed." if !(registration_owned? || current_user.admin) || (@registration.event != @event)
     if registration_owned?
       registration = Registration.find_by(id: params[:id])
       registration.event.spots += 1
