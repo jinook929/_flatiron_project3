@@ -19,59 +19,9 @@ by Jinook Jung
 1. You can either sign up for your own account or use the existing accounts to log in (You can also sign in via your Google account).
 2. Before logging in, you still can see evnet list and some informational pages, but you are unable to make reservations.
 3. If you log in as normal user (`test@users.com`, password: 123), you can create, update, and delete your own registration.
-4. If you log in as admin user (`abc@users.com`, password: 123), you can read, create, update, and delete events, and create, read, update, and delete comments, and read the users.
-6. Each user has access to his/her own profile (user info, vlog info, country info, and comment info) through `Welcome, USER` link on the navbar.
-7. Keyword search is available for any logged-in user via the search box on the navbar.
-
-## Screen Captures
-
-### Landing Page
-
-![Landing Page](./public/images/01_landing.png)
-
-### Signup Page
-
-![Signup Page](./public/images/02_signup.png)
-
-### Login Page
-
-![Login Page](./public/images/03_login.png)
-
-### Country List Page
-
-![Country List Page](./public/images/04_countrylist.png)
-
-### Vlog List Page
-
-![Vlog List Page](./public/images/05_vloglist.png)
-
-### Profile Page
-
-![Profile Page](./public/images/06_profile.png)
-
-### Vlog Page
-
-![Vlog Page](./public/images/07_vlog.png)
-
-### New Vlog Page
-
-![New Vlog Page](./public/images/08_newvlog.png)
-
-### Edit Vlog Page
-
-![Edit Vlog Page](./public/images/09_editvlog.png)
-
-### Comment Section
-
-![Comment Section](./public/images/10_comment.png)
-
-### Edit Comment
-
-![Edit Comment](./public/images/11_editcomment.png)
-
-### Search Results
-
-![Search Results](./public/images/12_search.png)
+4. If you log in as admin user (`abc@users.com`, password: 123), you can read, create, update, and delete events and users.
+6. Each user has access to his/her own profile (user info, registered event info, edit profile option and password change) through the link on the navbar.
+7. Event list can be categorized by onsite and virtual.
 
 ## Data Structure
 
