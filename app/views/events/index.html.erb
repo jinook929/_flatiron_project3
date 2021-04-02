@@ -2,7 +2,7 @@
 
 <h1 class="text-center mt-5 mb-3">Event List</h1>
 
-<% if current_user.admin %>
+<% if current_user && current_user.admin %>
   <div class="text-center">
     <%= link_to "New Event", new_event_path, class: "btn btn-outline-success btn-lg my-3" %>
   </div>
@@ -37,7 +37,7 @@
         <% else %>
           <%= link_to "Show", event_path(event), class: "btn btn-warning btn-lg mx-3 px-5", style: "width: 150px;" %>
         <% end %>
-        <% if current_user.admin %>
+        <% if current_user && current_user.admin %>
           <%= link_to "Edit", edit_event_path(event), class: "btn btn-dark btn-lg mx-3 px-5", style: "width: 150px;" %>
         <% end %>
       </div>

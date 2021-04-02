@@ -1,6 +1,8 @@
 class EventsController < ApplicationController
+  before_action :redirect_if_not_logged_in, only: [:new, :create, :edit, :update, :destroy]
+  before_action :redirect_if_not_admin_or_owner, only: [:new, :create, :edit, :update, :destroy]
+
   def index
-    # binding.pry
     if params[:user_id]
       @events = User.find_by(id: params[:user_id]).events.order(date: :desc, time: :desc)
     else
@@ -19,7 +21,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    # @event = Event.new(title: params[:event][:title], date: params[:event][:date], time: params[:event][:time], description: params[:event][:description], spots: params[:event][:spots])
     @event.toggle(:onsite) if params[:event][:onsite]
     if @event.save
       redirect_to @event, alert: "Event Successfully Created!"
