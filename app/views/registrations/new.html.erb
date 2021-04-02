@@ -7,16 +7,7 @@
       <p class="mb-3"><%= @event.date %> @ <%= @event.time.strftime('%l:%M %p') %></p>
       <h6 class="card-title mb-2">Family?</h6>
           <%= form_with model: @registration, url: event_registrations_path do |f| %>
-            <p>
-              <%= f.check_box :family, class: "form-check-input mr-0 pr-0", id: "family" %>
-              <%= f.label :family, "Check if family attending", class: "form-check-label", for: "family" %>
-            </p>
-            <p>
-              <%= f.submit "#{params[:id] ? 'Update' : 'Register'}", class: "btn btn-primary mt-2 px-5" %>
-              <%#= f.submit "Register", class: "btn btn-primary mt-2 px-5" %>
-            </p>
-
-            <%= link_to "Back to Event", @event %>
+            <%= render partial: 'form', locals: {event: @event, f: f} %>
           <% end %>
         </div>
     </div>
